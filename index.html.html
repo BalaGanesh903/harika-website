@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Harika's Role Readiness — 14 Banking Roles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0E0F14;
+    --surface: #16181F;
+    --surface2: #1E2029;
+    --border: rgba(255,255,255,0.07);
+    --border-strong: rgba(255,255,255,0.13);
+    --text-primary: #F0F1F5;
+    --text-secondary: #9097A8;
+    --text-tertiary: #5C6270;
+
+    --green: #22C98A;
+    --green-bg: rgba(34,201,138,0.1);
+    --green-border: rgba(34,201,138,0.2);
+    --green-deep: #0F5C3B;
+
+    --amber: #F0A944;
+    --amber-bg: rgba(240,169,68,0.1);
+    --amber-border: rgba(240,169,68,0.2);
+
+    --red: #F06B4A;
+    --red-bg: rgba(240,107,74,0.1);
+    --red-border: rgba(240,107,74,0.2);
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  html { background: var(--bg); }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    min-height: 100dvh;
+    overscroll-behavior: none;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    padding: 20px 16px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 6px;
+  }
+
+  .header-title {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+
+  .header-title em {
+    font-style: italic;
+    color: var(--green);
+  }
+
+  .header-sub {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 18px;
+  }
+
+  /* ── STATS ROW ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin: 0 16px 20px;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 12px 10px;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-num.green { color: var(--green); }
+  .stat-num.amber { color: var(--amber); }
+  .stat-num.red { color: var(--red); }
+
+  .stat-label {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.3;
+  }
+
+  /* ── FILTER STRIP ── */
+  .filter-wrap {
+    padding: 0 16px;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .filter-wrap::-webkit-scrollbar { display: none; }
+
+  .fbtn {
+    flex-shrink: 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 40px;
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .fbtn.active-all, .fbtn.active {
+    border-color: transparent;
+    color: #fff;
+  }
+  .fbtn.active-all { background: linear-gradient(135deg, #22C98A, #1AADE0); }
+  .fbtn.active-green { background: var(--green-bg); color: var(--green); border-color: var(--green-border); }
+  .fbtn.active-amber { background: var(--amber-bg); color: var(--amber); border-color: var(--amber-border); }
+  .fbtn.active-red { background: var(--red-bg); color: var(--red); border-color: var(--red-border); }
+
+  /* ── SECTION LABELS ── */
+  .section-label {
+    padding: 0 16px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── CARDS ── */
+  .cards-wrap {
+    padding: 0 16px;
+  }
+
+  .role-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.15s;
+    cursor: pointer;
+  }
+
+  .role-card.open {
+    border-color: var(--border-strong);
+  }
+
+  .role-card:active {
+    transform: scale(0.995);
+  }
+
+  .card-header {
+    padding: 14px 14px 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .card-title-group {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+
+  .progress-row {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .progress-track {
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .progress-pct {
+    font-size: 11px;
+    font-weight: 700;
+    min-width: 28px;
+    text-align: right;
+    line-height: 1;
+  }
+
+  .badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 9px;
+    border-radius: 20px;
+    flex-shrink: 0;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .chevron {
+    color: var(--text-tertiary);
+    font-size: 12px;
+    flex-shrink: 0;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .role-card.open .chevron {
+    transform: rotate(180deg);
+  }
+
+  /* ── EXPANDED BODY ── */
+  .card-body {
+    display: none;
+    padding: 0 16px 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  .card-body.show {
+    display: block;
+    animation: slideDown 0.2s ease-out;
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .tip-box {
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    line-height: 1.6;
+    font-weight: 500;
+  }
+
+  .tip-green { background: var(--green-bg); color: #6BEDD5; border: 1px solid var(--green-border); }
+  .tip-amber { background: var(--amber-bg); color: #F0C88A; border: 1px solid var(--amber-border); }
+  .tip-red { background: var(--red-bg); color: #F0A08A; border: 1px solid var(--red-border); }
+
+  .sec-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-tertiary);
+    margin: 14px 0 8px;
+  }
+
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .pill {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 20px;
+    line-height: 1.4;
+  }
+
+  .pill-have { background: rgba(34,201,138,0.1); color: #6BEDD5; border: 1px solid rgba(34,201,138,0.15); }
+  .pill-partial { background: rgba(240,169,68,0.1); color: #F0C88A; border: 1px solid rgba(240,169,68,0.15); }
+  .pill-need { background: rgba(240,107,74,0.1); color: #F0A08A; border: 1px solid rgba(240,107,74,0.15); }
+
+  .learn-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .learn-list li {
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .learn-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--text-tertiary);
+    font-size: 11px;
+    top: 1px;
+  }
+
+  .study-btn {
+    margin-top: 14px;
+    width: 100%;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--green-border);
+    background: var(--green-bg);
+    color: var(--green);
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .study-btn:active { opacity: 0.8; transform: scale(0.98); }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin: 24px 16px 32px;
+    padding: 14px 16px;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .footer-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .footer-text {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .footer-text strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  /* ── EMPTY STATE ── */
+  .empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-tertiary);
+    font-size: 14px;
+    display: none;
+  }
+  .empty.show { display: block; }
+
+  /* ── SCROLL FADE ── */
+  .cards-section { padding-bottom: 4px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-eyebrow">Career Readiness Report</div>
+  <h1 class="header-title">Harika's <em>Banking</em><br>Role Map</h1>
+  <p class="header-sub">14 roles assessed based on her 2.9 years in loan processing & DSA operations.</p>
+</div>
+
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="stat-num green">6</div>
+    <div class="stat-label">Apply<br>Now</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num amber">5</div>
+    <div class="stat-label">Minor<br>Upskill</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num red">3</div>
+    <div class="stat-label">Needs<br>Prep</div>
+  </div>
+</div>
+
+<div class="filter-wrap">
+  <button class="fbtn active-all" data-filter="all" onclick="filt('all',this)">All 14</button>
+  <button class="fbtn" data-filter="direct" onclick="filt('direct',this)">✦ Apply now</button>
+  <button class="fbtn" data-filter="minor" onclick="filt('minor',this)">◈ Minor upskill</button>
+  <button class="fbtn" data-filter="prep" onclick="filt('prep',this)">◉ Needs prep</button>
+</div>
+
+<div id="root"></div>
+
+<div class="footer">
+  <div class="footer-icon">💡</div>
+  <div class="footer-text"><strong>Tip:</strong> Tap any role to see exactly what she has, what's missing, and a step-by-step action plan.</div>
+</div>
+
+<script>
+const data=[
+{name:"Loan Processing Executive",status:"direct",pct:95,have:["End-to-end loan processing","Bank coordination (login/sanction/disbursement)","Client documentation & verification","TAT management","10+ logins/month experience","DSA setup operations"],partial:[],need:[],tip:"This is her current role — she can apply to a bank or NBFC directly as a Senior Loan Processing Executive. Her 2.9 years + promotion + Best Performer award make her an instant fit.",learn:[]},
+{name:"NBFC Loan Manager",status:"direct",pct:88,have:["DSA background (direct match)","Loan processing & disbursement","Client & bank coordination","Target experience (10+ logins/month)","End-to-end loan cycle knowledge"],partial:["Channel/DSA management (she was the DSA, not managing them)"],need:[],tip:"NBFCs like Bajaj Finance, Muthoot, IIFL heavily recruit from DSA backgrounds. Her DSA experience is the exact pipeline these companies want to manage.",learn:["Learn about NBFC-specific products: gold loans, MSME loans, vehicle loans"]},
+{name:"Bank Sales Executive",status:"direct",pct:87,have:["Loan product knowledge (home/personal/business)","Client acquisition experience","Bank disbursement follow-up","Documentation submission to banks","Target-driven work (10+ logins/month)"],partial:["Cold calling / lead generation (may be informal in current role)"],need:[],tip:"She already does this work, just from the DSA side. Switching to the bank's in-house sales team is a natural, direct move with no gap.",learn:["Refresh knowledge of latest loan products, interest rates, and processing norms"]},
+{name:"KYC / Documentation Analyst",status:"direct",pct:85,have:["Client document verification","Bank-requirement compliance","Strong documentation background","Attention to detail (proven)","Data entry & record-keeping"],partial:["Formal AML/KYC terminology"],need:[],tip:"Her entire job is built on documentation and verification — this role is a direct lateral move into a bank or NBFC compliance team.",learn:["Read RBI's KYC Master Direction (free on RBI website, 1–2 days)","Learn basic AML terminology — PMLA Act, FATF guidelines"]},
+{name:"Mortgage Specialist",status:"direct",pct:82,have:["Home loan processing experience","Bank coordination for sanction & disbursement","Client communication","Documentation expertise","KYC compliance"],partial:["Property/legal document verification (limited exposure)"],need:[],tip:"Home loans are her bread and butter. Mortgage Specialist roles at HDFC, LIC HFL, PNB HFL are a strong direct fit.",learn:["Learn basics of property valuation, title deed verification, and encumbrance certificates"]},
+{name:"Collections Officer",status:"direct",pct:78,have:["Disbursement follow-up (partial collections exposure)","Client communication","Loan lifecycle understanding","MS Excel for tracking","Negotiation (informal)"],partial:["Hard collections / field recovery","Delinquency bucket tracking"],need:[],tip:"She has soft collections experience through follow-ups. Most banks train freshers on collections process. Her loan background is an advantage.",learn:["Understand DPD buckets (30/60/90 days)","Learn about settlement norms and NPA guidelines"]},
+{name:"Relationship Manager – Retail",status:"minor",pct:68,have:["Client communication & relationship skills","Loan product knowledge","Target-oriented mindset","English & Telugu communication"],partial:["Cross-selling products beyond loans (FDs, insurance, MF)","CRM tool usage"],need:["Savings/investment product knowledge","Portfolio management basics"],tip:"She has the relationship instinct and client-facing experience. The gap is product breadth — she needs to learn banking products beyond loans before applying.",learn:["Study fixed deposits, recurring deposits, insurance bundling basics","Learn about CASA (Current Account Savings Account) targets","Practice with any free CRM tool (Zoho CRM free tier)"]},
+{name:"Personal Banker",status:"minor",pct:65,have:["Customer interaction skills","Loan product knowledge","Target achievement track record","Documentation accuracy"],partial:["Banking product cross-selling","Account management"],need:["FD/RD/SIP/insurance product knowledge","Branch banking etiquette"],tip:"Personal Banker is achievable with 2–3 weeks of self-study on banking products. HDFC, Axis, ICICI regularly hire from loan backgrounds for this role.",learn:["Study retail banking products — savings accounts, FDs, RDs, SIP basics","Understand cross-sell metrics: AUM, CASA ratio","Take any free JAIIB overview course (YouTube)"]},
+{name:"Customer Service Officer (CSO)",status:"minor",pct:72,have:["Client communication skills","English & Telugu fluency","Problem-solving with borrowers","Patience & follow-up skills"],partial:["Branch banking procedures","Account servicing (NEFT/RTGS/cheques)"],need:["Core banking software exposure (Finacle/Bancs)"],tip:"Her communication skills are strong. The only gap is familiarity with branch transactions and core banking software — easily learned in 1–2 weeks.",learn:["Watch Finacle/Bancs tutorial videos on YouTube","Study NEFT, RTGS, IMPS transaction types and limits","Understand account types: savings, current, NRI, salary accounts"]},
+{name:"Operations Executive – Banking",status:"minor",pct:63,have:["Back-office process experience","MS Office skills","Documentation & data accuracy","Process-oriented work approach"],partial:["Transaction reconciliation","Core banking operations"],need:["Core banking software (Finacle)","NEFT/RTGS/IMPS processing knowledge","Reconciliation techniques"],tip:"Her back-office loan processing maps well to banking operations. Needs to add banking transaction knowledge — 2–3 weeks of focused study.",learn:["Study core banking operations: account opening, transaction processing, EOD/BOD","Learn reconciliation basics in MS Excel","Understand banking audit and compliance checklists"]},
+{name:"Loan Officer / Credit Officer",status:"minor",pct:60,have:["Loan file processing experience","Client documentation","Bank coordination","Understanding of approval process"],partial:["Credit analysis / financial statement reading","Risk assessment terminology"],need:["Credit scoring (CIBIL analysis, FOIR, LTV)","Financial statement interpretation","Risk appraisal note writing"],tip:"She understands loans from the processing side but needs to learn the credit analysis side. 4–6 weeks of focused study on credit appraisal will bridge the gap.",learn:["Learn CIBIL score interpretation, bureau reports","Study FOIR (Fixed Obligation to Income Ratio) and LTV calculation","Practice reading ITR, salary slips, bank statements as a credit officer would","Watch free credit analysis videos on YouTube (FinShiksha, Udemy free previews)"]},
+{name:"Credit Analyst",status:"prep",pct:40,have:["Loan file documentation experience","Understanding of borrower profiles","Bank coordination"],partial:["Basic understanding of financials from processing side"],need:["Financial statement analysis (P&L, Balance Sheet)","CIBIL & bureau report analysis","Credit appraisal note writing","Risk profiling techniques","Advanced MS Excel"],tip:"This is a growth role — not impossible, but needs 2–3 months of structured preparation. It is the highest-value target for her medium-term career.",learn:["Complete a Credit Analysis course (FinShiksha / Udemy / NSE Academy)","Practice reading 10 real financial statements","Learn to compute FOIR, DSCR, Current Ratio, Debt-Equity Ratio","Build an Excel-based credit appraisal template","Target NBFC credit roles first — they are more open to candidates from DSA/processing backgrounds"]},
+{name:"Branch Banking Officer",status:"prep",pct:45,have:["Documentation & KYC skills","MS Office","Customer-facing experience"],partial:["Banking product knowledge"],need:["Cash handling procedures","Core banking software (mandatory)","Branch SOPs and compliance norms","Account opening end-to-end process"],tip:"Branch Banking Officer at PSU banks (SBI, PNB) typically requires IBPS/bank exams. Private banks hire laterally but expect branch operations knowledge.",learn:["Prepare for IBPS Clerk/PO if targeting PSU banks","Study branch operations: cash management, vault, teller procedures","Learn Finacle basics","Target private banks (Axis, HDFC, IndusInd) for direct lateral entry"]},
+{name:"Trade Finance Executive",status:"prep",pct:18,have:["Documentation discipline","MS Excel","Attention to detail"],partial:[],need:["Letter of Credit (LC) mechanics","Bank Guarantees","FEMA & RBI trade finance regulations","Import/Export documentation","International banking basics","Trade finance software"],tip:"This is an advanced specialisation with very little overlap with her current experience. She should target this only after 2–3 years in another banking role.",learn:["Not recommended as a near-term target","After gaining 2+ years in banking, take a Trade Finance certification (IIBF, CDCS)","Learn FEMA basics and RBI trade circulars"]}
+];
+
+const sm={
+  direct:{label:"Apply now",dot:"#22C98A",bar:"#22C98A",pctColor:"#22C98A",tipClass:"tip-green",badgeBg:"rgba(34,201,138,0.12)",badgeColor:"#22C98A"},
+  minor:{label:"Minor upskill",dot:"#F0A944",bar:"#F0A944",pctColor:"#F0A944",tipClass:"tip-amber",badgeBg:"rgba(240,169,68,0.12)",badgeColor:"#F0A944"},
+  prep:{label:"Needs prep",dot:"#F06B4A",bar:"#F06B4A",pctColor:"#F06B4A",tipClass:"tip-red",badgeBg:"rgba(240,107,74,0.12)",badgeColor:"#F06B4A"}
+};
+
+let activeFilter = 'all';
+
+function toggle(card) {
+  const body = card.querySelector('.card-body');
+  const isOpen = card.classList.contains('open');
+  card.classList.toggle('open', !isOpen);
+  body.classList.toggle('show', !isOpen);
+}
+
+function filt(f, btn) {
+  activeFilter = f;
+  document.querySelectorAll('.fbtn').forEach(b => {
+    b.className = 'fbtn';
+  });
+  if (f === 'all') btn.className = 'fbtn active-all';
+  else if (f === 'direct') btn.className = 'fbtn active-green';
+  else if (f === 'minor') btn.className = 'fbtn active-amber';
+  else if (f === 'prep') btn.className = 'fbtn active-red';
+
+  document.querySelectorAll('.role-card').forEach(c => {
+    c.style.display = (f === 'all' || c.dataset.status === f) ? '' : 'none';
+  });
+
+  document.querySelectorAll('.section-label').forEach(sl => {
+    const status = sl.dataset.for;
+    if (!status) return;
+    const visible = f === 'all' || f === status;
+    sl.style.display = visible ? '' : 'none';
+  });
+
+  // check empty state
+  const empty = document.getElementById('empty');
+  const anyVisible = [...document.querySelectorAll('.role-card')].some(c => c.style.display !== 'none');
+  empty.classList.toggle('show', !anyVisible);
+}
+
+function render() {
+  const root = document.getElementById('root');
+  root.innerHTML = '';
+
+  const groups = [
+    { label: '✦ Apply Directly Now', status: 'direct' },
+    { label: '◈ Apply with Minor Upskill', status: 'minor' },
+    { label: '◉ Build Skills First', status: 'prep' }
+  ];
+
+  groups.forEach(g => {
+    const roles = data.filter(r => r.status === g.status);
+
+    const sectionDiv = document.createElement('div');
+    sectionDiv.className = 'cards-section';
+
+    const label = document.createElement('div');
+    label.className = 'section-label';
+    label.dataset.for = g.status;
+    label.textContent = g.label;
+    sectionDiv.appendChild(label);
+
+    const wrap = document.createElement('div');
+    wrap.className = 'cards-wrap';
+
+    roles.forEach(role => {
+      const meta = sm[role.status];
+
+      const card = document.createElement('div');
+      card.className = 'role-card';
+      card.dataset.status = role.status;
+      card.onclick = () => toggle(card);
+
+      const havePills = role.have.map(s => `<span class="pill pill-have">${s}</span>`).join('');
+      const partialPills = role.partial.map(s => `<span class="pill pill-partial">${s}</span>`).join('');
+      const needPills = role.need.map(s => `<span class="pill pill-need">${s}</span>`).join('');
+      const learnItems = role.learn.map(s => `<li>${s}</li>`).join('');
+
+      card.innerHTML = `
+        <div class="card-header">
+          <div class="status-dot" style="background:${meta.dot}"></div>
+          <div class="card-title-group">
+            <div class="card-title">${role.name}</div>
+            <div class="progress-row">
+              <div class="progress-track">
+                <div class="progress-fill" style="width:${role.pct}%;background:${meta.bar}"></div>
+              </div>
+              <span class="progress-pct" style="color:${meta.pctColor}">${role.pct}%</span>
+            </div>
+          </div>
+          <span class="badge" style="background:${meta.badgeBg};color:${meta.badgeColor}">${meta.label}</span>
+          <span class="chevron">▾</span>
+        </div>
+        <div class="card-body">
+          <div class="tip-box ${meta.tipClass}">${role.tip}</div>
+          ${role.have.length ? `<div class="sec-label">✓ Already has</div><div class="pills">${havePills}</div>` : ''}
+          ${role.partial.length ? `<div class="sec-label">◑ Partial match</div><div class="pills">${partialPills}</div>` : ''}
+          ${role.need.length ? `<div class="sec-label">✗ Skills to build</div><div class="pills">${needPills}</div>` : ''}
+          ${role.learn.length ? `<div class="sec-label">→ Action plan</div><ul class="learn-list">${learnItems}</ul>` : ''}
+          <button class="study-btn" onclick="event.stopPropagation();sendPrompt && sendPrompt('Give me a detailed learning plan for Harika to prepare for the ${role.name} role')">
+            <span>Get detailed study plan for this role</span>
+            <span>↗</span>
+          </button>
+        </div>
+      `;
+
+      wrap.appendChild(card);
+    });
+
+    sectionDiv.appendChild(wrap);
+    root.appendChild(sectionDiv);
+  });
+
+  const empty = document.createElement('div');
+  empty.id = 'empty';
+  empty.className = 'empty';
+  empty.textContent = 'No roles match this filter.';
+  root.appendChild(empty);
+}
+
+render();
+</script>
+</body>
+</html>
